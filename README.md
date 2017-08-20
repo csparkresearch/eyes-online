@@ -2,4 +2,4 @@
 
 # Online docs and application manager
 
-placeholder text
+[ExpEYES Website](http://expeyes.in)
