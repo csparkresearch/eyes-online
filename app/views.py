@@ -2,42 +2,34 @@ from app import app,SQLAlchemy,db
 from app.db_handler import User,UserScript,UserDoc
 from flask import Flask, render_template,request,json,session,redirect,jsonify,send_from_directory
 from werkzeug import generate_password_hash, check_password_hash
-import os
-
-@app.route('/')
-@app.route('/index')
-def index():
-    return render_template('index.html')
+import os,random
+from flasgger.utils import swag_from
 
 
 @app.route('/signUp',methods=['POST'])
+@swag_from('signUp.yml')
 def signUp():
-	"""Sign Up for Eyes-Online
-	
-	POST: Submit sign-up parameters. The following must be present:
-	 inputName : The name of your account. does not need to be unique
-	 inputEmail : e-mail ID used for login . must be unique.
-	Returns HTTP 404 when data does not exist.
-	"""
-	# read the posted values from the UI
-	_name = request.form['inputName']
-	_email = request.form['inputEmail']
-	_password = request.form['inputPassword']
+    # read the posted values from the UI
+    print (request)
+    _name = request.form['inputName']
+    _email = request.form['inputEmail']
+    _password = request.form['inputPassword']
 
-	# validate the received values
-	if _name and _email and _password:
-		_hashed_password = generate_password_hash(_password)
-		newUser = User(_email, _name,_hashed_password)
-		try:
-			db.session.add(newUser)
-			db.session.commit()
-			return json.dumps({'status':True,'message':'User %s created successfully. e-mail:%s !'%(_name,_email)})
-		except Exception as exc:
-			reason = str(exc)
-			return json.dumps({'status':False,'message':str(reason)})
+    # validate the received values
+    if _name and _email and _password:
+	    _hashed_password = generate_password_hash(_password)
+	    newUser = User(_email, _name,_hashed_password)
+	    try:
+		    db.session.add(newUser)
+		    db.session.commit()
+		    return json.dumps({'status':True,'message':'User %s created successfully. e-mail:%s !'%(_name,_email)})
+	    except Exception as exc:
+		    reason = str(exc)
+		    return json.dumps({'status':False,'message':str(reason)})
 
 
 @app.route('/validateLogin',methods=['POST'])
+@swag_from('validateLogin.yml')
 def validateLogin():
     _username = request.form['inputEmail']
     _password = request.form['inputPassword']
@@ -45,13 +37,14 @@ def validateLogin():
     if user is not None:
         if check_password_hash(user.pwHash,_password):
             session['user'] = [user.username,user.email]
-            return json.dumps({'status':True})
+            return json.dumps({'status':True,'message':'Login successful'})
         else:
             return json.dumps({'status':False,'message':'Wrong Email address or Password. hash mismatch'})
     else:
         return json.dumps({'status':False,'message':'Username not specified'})
 
 @app.route('/logout',methods=['POST'])
+@swag_from('logout.yml')
 def logout():
 	try:
 		print ('logging out',session.pop('user',None))
@@ -170,4 +163,8 @@ def getCodeById():
 
 
 
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('index.html')
 

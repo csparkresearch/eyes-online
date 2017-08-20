@@ -1,0 +1,39 @@
+This is the login API
+Call this API with email and password string, and get back a status variable. The flask token is activated on success
+---
+tags:
+  - User Sessions API
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - name: inputEmail
+    type: string
+    description: e-mail address. it's your login ID.
+    in: formData
+    required: true
+  - name: inputPassword
+    type: string
+    description: password string
+    in: formData
+    required: true
+
+responses:
+  200:
+    description: Login Successful
+    schema:
+      id: signin
+      properties:
+        status:
+          type: boolean
+          description: true/false depending on sign-in result
+          default: true
+        message:
+          type: string
+          description: Sign-in message
+          default: "Login successful"
+  400:
+    description: Error, Password mismatch / user does not exist
+
+
