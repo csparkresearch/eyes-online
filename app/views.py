@@ -4,6 +4,12 @@ from flask import Flask, render_template,request,json,session,redirect,jsonify,s
 from werkzeug import generate_password_hash, check_password_hash
 import os
 
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+
 @app.route('/signUp',methods=['POST'])
 def signUp():
 	"""Sign Up for Eyes-Online

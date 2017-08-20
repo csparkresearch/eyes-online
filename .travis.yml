@@ -1,0 +1,36 @@
+sudo: required
+dist: trusty
+
+
+language: python
+cache: pip
+
+addons:
+  postgresql: "9.6"
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+services:
+    - postgresql
+
+
+python:
+  - "2.7"
+  - "3.4"
+
+
+install:
+  # API server stuff  
+  - pip install -r requirements.txt
+
+before_script:
+  - psql -c 'create database eyes_db;' -U postgres
+  - export DATABASE_URL=postgres:///eyes_db
+
+script: nosetests
+
+#after_success:
+#  - pushd frontend
+#  - bash surge_deploy.sh
+#  - popd
+

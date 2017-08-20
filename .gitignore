@@ -1,0 +1,35 @@
+# emacs backups
+*~
+# python compiled files
+*.pyc
+# Setuptools distribution folder.
+/dist/
+# Python egg metadata, regenerated from source files by setuptools.
+/*.egg-info
+__pycache__/
+
+# build zones
+build/
+dist
+
+# compiled output
+frontend/dist
+frontend/tmp
+
+# dependencies
+frontend/node_modules
+frontend/bower_components
+
+# misc
+frontend/.sass-cache
+frontend/connect.lock
+frontend/coverage/*
+frontend/libpeerconnection.log
+frontend/npm-debug.log*
+frontend/yarn-error.log
+frontend/testem.log
+
+# ember-try
+frontend/.node_modules.ember-try/
+frontend/bower.json.ember-try
+frontend/package.json.ember-try
