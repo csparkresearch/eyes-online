@@ -8,6 +8,12 @@
 </head>
 
 <style>
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
 *
 {
 font-family: 'Roboto' , sans-serif;
@@ -44,8 +50,8 @@ text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px, rgba(
 </style>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row vertical-center">
+        <div class="col-md-8 col-sm-12">
             <div class="redir-template">
                 <h1>HI!</h1>
                 <h2>This is just a backend for ExpEYES Online</h2>
@@ -62,8 +68,8 @@ text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px, rgba(
 
             </div>
         </div>
-        <div class="col-md-6 pattern visible-lg  visible-md">
-            <svg class="svg-box" width="420px" height="380px" viewbox="0 0 837 1045" version="1.1"
+        <div class="col-md-4 pattern visible-lg  visible-md">
+            <svg class="svg-box" width="320px" height="380px" viewbox="0 0 837 1045" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
