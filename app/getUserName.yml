@@ -1,0 +1,30 @@
+Fetch the logged in user
+Returns the username if a session is active, otherwise returns None
+---
+tags:
+  - User Sessions API
+produces:
+  - application/json
+
+responses:
+  200:
+    description: Session active
+    schema:
+      id: username
+      properties:
+        status:
+          type: boolean
+          description: true/false depending on session state
+          default: true
+        username:
+          type: string
+          description: username of active session
+          default: "a"
+        email:
+          type: string
+          description: email ID of active session
+          default: "a@a.com"
+  400:
+    description: Not logged in
+
+
