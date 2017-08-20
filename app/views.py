@@ -43,7 +43,7 @@ def validateLogin():
     else:
         return json.dumps({'status':False,'message':'Username not specified'})
 
-@app.route('/logout',methods=['POST'])
+@app.route('/logout',methods=['PUT'])
 @swag_from('logout.yml')
 def logout():
 	try:
@@ -55,11 +55,12 @@ def logout():
 
 
 @app.route('/getUserName')
+@swag_from('getUserName.yml')
 def getUserName():
 	if session.get('user'):
-		return json.dumps({'username':session['user'][0]})
+		return json.dumps({'status':True,'username':session['user'][0],'email':session['user'][1]})
 	else:
-		return json.dumps({'error':'Not Logged In'})
+		return json.dumps({'status':False,'username':'','email':''})
 
 
 @app.route('/addScript',methods=['POST'])
