@@ -1,0 +1,34 @@
+Get a list of scripts authored by the signed in user
+Call this endpoint to get a JSON structure representing the saved scripts
+---
+tags:
+  - Python Code Storage and Access
+produces:
+  - application/json
+
+responses:
+  200:
+    description: Fetch Successful
+    schema:
+      id: script_list
+      properties:
+        message:
+          type: string
+          description:  Fetch result
+          default: "done"
+        status:
+          type: boolean
+          description: true/false depending on query result
+          default: true
+        data:
+          type: object
+          description: Fetch result
+          default: [{'Id': 2,'Filename': 'Hello.py','Date': 'Sun, 20 Aug 2017 17:14:30 GMT'}]
+  401:
+    description: Error, Unauthorized access
+  403:
+    description: Error, You're not allowed to do this
+  400:
+    description: Error, Something else went wrong
+
+

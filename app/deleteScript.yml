@@ -1,0 +1,38 @@
+Delete a script from the database
+Call this API with codeID to delete a script if it belongs to the signed in user
+---
+tags:
+  - Python Code Storage and Access
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - name: codeId
+    type: integer
+    description: Unique ID for the script to edit. You can only do this if the code was authored by you
+    in: formData
+    required: true
+
+responses:
+  200:
+    description: Delete Successful
+    schema:
+      id: deletion
+      properties:
+        status:
+          type: boolean
+          description: true/false depending on delete result
+          default: true
+        message:
+          type: string
+          description: Delete message
+          default: "Deleted!"
+  401:
+    description: Error, Unauthorized access
+  403:
+    description: Error, You're not allowed to do this
+  400:
+    description: Error, Something else went wrong
+
+

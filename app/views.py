@@ -64,6 +64,7 @@ def getUserName():
 
 
 @app.route('/addScript',methods=['POST'])
+@swag_from('addScript.yml')
 def addScript():
 	try:
 		if session.get('user'):
@@ -75,19 +76,20 @@ def addScript():
 			try:
 				db.session.add(newSnippet)
 				db.session.commit()
-				return json.dumps({'status':True})
+				return json.dumps({'status':True,'message':'stored'})
 			except Exception as exc:
-				return json.dumps({'status':False,'message':str(exc)})
+				return json.dumps({'status':False,'message':str(exc)}),403
 
 		else:
-			return json.dumps({'status':False,'message':'Unauthorized access'})
+			return json.dumps({'status':False,'message':'Unauthorized access'}),401
 	except Exception as e:
-		return json.dumps({'status':False,'message':str(e)})
+		return json.dumps({'status':False,'message':str(e)}),400
 
 
 
 
 @app.route('/updateScript', methods=['POST'])
+@swag_from('updateScript.yml')
 def updateScript():
   if session.get('user'):
     _user = session.get('user')[1]
@@ -109,23 +111,23 @@ def updateScript():
 
 
 @app.route('/deleteScript',methods=['POST'])
+@swag_from('deleteScript.yml')
 def deleteScript():
   if session.get('user'):
     _user = session.get('user')[1]
     _id = request.form['scriptId']
     try:
       UserScript.query.filter_by(user=_user,id=_id).delete()
-      print ('deleted',_id)
       db.session.commit()
-      return json.dumps({'status':True,'message':'Deleted!'})
+      return json.dumps({'status':True,'message':'Deleted!'}),200
     except Exception as exc:
-      print(exc)
-      return json.dumps({'status':False,'message':str(exc)})
+      return json.dumps({'status':False,'message':str(exc)}),403
   else:
-    return json.dumps({'status':False,'message':'Unauthorized access'})
+    return json.dumps({'status':False,'message':'Unauthorized access'}),401
 
 
 @app.route('/getScriptList')
+@swag_from('getScriptList.yml')
 def getScriptList():
 	try:
 		if session.get('user'):
@@ -139,28 +141,29 @@ def getScriptList():
 						#'Code': script.code, #Can be enbled if the user demands all scripts and content.
 						'Date': script.pub_date}
 				scripts_dict.append(single_script)
-			return json.dumps(scripts_dict)
+			return json.dumps({'status':True,'data':scripts_dict,'message':'done'}),200
 		else:
-			return json.dumps([])
+			return json.dumps({'status':False,'data':[],'message':'Please login first'}),401
 	except Exception as e:
 		print (str(e))
-		return json.dumps([])
+		return json.dumps({'status':False,'data':[],'message':str(e)}),403
 
 
 
 @app.route('/getScriptById',methods=['POST'])
-def getCodeById():
+@swag_from('getScriptById.yml')
+def getScriptById():
 	if session.get('user'):
 		_id = request.form['id']
 		_user = session.get('user')[1]
 		try:
 			script = UserScript.query.filter_by(user=_user,id=_id).first()
 			print('sending :',script.title)
-			return json.dumps({'status':True,'Id':script.id,'Code':script.code,'Filename':script.title,'Date':script.pub_date,'message':'got script %s'%script.title})
+			return json.dumps({'status':True,'Code':script.code,'Filename':script.title,'Date':script.pub_date,'message':'got script %s'%script.title})
 		except Exception as exc:
-			return json.dumps({'data':None,'status':False,'message':str(exc)})
+			return json.dumps({'status':False,'message':str(exc),'Filename':'','Date':'','Code':''}),403
 	else:
-		return json.dumps({'data':None,'status':False,'message':'Unauthorized access'})
+		return json.dumps({'status':False,'message':'Unauthorized access','Filename':'','Date':'','Code':''}),401
 
 
 

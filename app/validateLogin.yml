@@ -15,6 +15,7 @@ parameters:
     required: true
   - name: inputPassword
     type: string
+    format: password
     description: password string
     in: formData
     required: true

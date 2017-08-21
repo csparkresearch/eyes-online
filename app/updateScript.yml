@@ -1,0 +1,48 @@
+Update existing script in the database
+Call this API with filename, new code string, and unique ID, and get back a status variable. On success, the code is updated in the database 
+---
+tags:
+  - Python Code Storage and Access
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - name: codeId
+    type: integer
+    description: Unique ID for the script to edit. You can only do this if the code was authored by you
+    in: formData
+    required: true
+  - name: inputTitle
+    type: string
+    description: Filename. It can be any arbitrary string up to 80 characters long, but a filename-like entity is preferred
+    in: formData
+    required: true
+  - name: inputDescription
+    type: string
+    description: The actual python script to store into the database
+    in: formData
+    required: true
+
+responses:
+  200:
+    description: Submit Successful
+    schema:
+      id: submit
+      properties:
+        status:
+          type: boolean
+          description: true/false depending on update result
+          default: true
+        message:
+          type: string
+          description: Storage message
+          default: "stored"
+  401:
+    description: Error, Unauthorized access
+  403:
+    description: Error, You're not allowed to do this
+  400:
+    description: Error, Something else went wrong
+
+

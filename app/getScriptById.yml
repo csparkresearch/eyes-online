@@ -1,0 +1,46 @@
+Get the contents of a script if it belongs to the active user
+Call this endpoint with the code ID to get the script filename, contents, date
+---
+tags:
+  - Python Code Storage and Access
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - name: id
+    type: integer
+    description: Unique ID for the script to edit. You can only do this if the code was authored by you
+    in: formData
+    required: true
+
+responses:
+  200:
+    description: Submit Successful
+    schema:
+      id: submit
+      properties:
+        status:
+          type: boolean
+          description: true/false depending on fetch result
+          default: true
+        Filename:
+          type: string
+          description: File name
+          default: "hello"
+        Date:
+          type: string
+          description: creation date
+          default: "Sun, 20 Aug 2017 17:14:30 GMT"
+        Code:
+          type: string
+          description: script contents
+          default: "print ('hello world')"
+  401:
+    description: Error, Unauthorized access
+  403:
+    description: Error, You're not allowed to do this
+  400:
+    description: Error, Something else went wrong
+
+
