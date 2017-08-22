@@ -18,6 +18,12 @@ parameters:
     description: The actual python script to store into the database
     in: formData
     required: true
+  - name: inputType
+    type: string
+    description: The type of script. can be 'code' or 'doc'
+    in: formData
+    default: code
+
 
 responses:
   200:

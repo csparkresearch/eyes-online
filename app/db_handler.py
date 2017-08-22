@@ -20,23 +20,23 @@ class User(db.Model):
 class UserScript(db.Model):
 	__tablename__ = 'userScript'
 	id = db.Column(db.Integer, primary_key=True)
-	user = db.Column(db.String(80))
+	email = db.Column(db.String(80))
 	title = db.Column(db.String(100))
 	script = db.Column(db.Text)
+	doc_type = db.Column(db.String(20))
 	pub_date = db.Column(db.DateTime)
 
-	def __init__(self, user, title,script,pub_date=None):
-		self.user = user
+	def __init__(self, email, title,script,doc_type='code'):
+		self.email = email
 		self.title = title
 		self.script = script
-		if pub_date is None:
-		    pub_date = datetime.utcnow()
-		self.pub_date = pub_date
+		self.doc_type = doc_type
+		self.pub_date = datetime.utcnow()
 
 	def __repr__(self):
 		return '<UserScript %r>' % self.email
 
-
+'''
 class UserDoc(db.Model):
 	__tablename__ = 'userDoc'
 	id = db.Column(db.Integer, primary_key=True)
@@ -56,7 +56,7 @@ class UserDoc(db.Model):
 	def __repr__(self):
 		return '<UserDoc %r>' % self.email
 
-
+'''
 
 
 db.create_all()

@@ -6,7 +6,13 @@
 ### Running this locally
 
 Install Python dependencies from requirements.txt
-Create a postgresql dependency. e.g. `postgres:///eyes_db`
+
+Create a postgresql database. e.g. `postgres:///eyes_db`
+```
+yourusername@host$ sudo -i -u postgres
+postgres@host$ psql
+postgres=# create database eyes_db with owner yourusername;
+```
 
 set the DATABASE_URL environment variable to point to your database
 
