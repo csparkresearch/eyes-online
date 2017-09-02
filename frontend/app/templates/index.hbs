@@ -1,0 +1,38 @@
+{{home-menu}}
+<div class="container">
+  <h3>ExpEYES - Online: Browse the latest experiments and docs </h3><hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel-body">
+        {{#each-in model.data as |username scripts|}}
+          <h3><span class="label label-primary">Author : {{ username }}</span></h3>
+          <ul id="myCodeList" class="list-group">
+            {{#each scripts as |script|}}          
+              <li class="list-group-item">
+                <div class="checkbox">
+                  <label>
+                    {{script.Filename}}
+                  </label>
+                </div>
+                <div class="pull-right action-buttons">
+                  <a {{action "viewScript" script on="click"}} role="button" class="btn btn-info btn-small">
+                    View
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                  </a>
+                  <a {{action "downloadScript" script on="click"}} role="button" class="btn btn-success btn-small">
+                    Download
+                    <span class="glyphicon glyphicon-save"></span>
+                  </a>
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        {{else}}
+          Empty database
+        {{/each-in}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{expeyes-banner}}

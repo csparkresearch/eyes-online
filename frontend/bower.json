@@ -1,0 +1,21 @@
+{
+  "name": "eyes-online",
+  "description": "ExpEYES online documentation and code",
+  "main": "",
+  "authors": [
+    "jithinbp <jithinbp@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-switch": "^3.3.2"
+  }
+}

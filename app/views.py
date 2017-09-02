@@ -5,7 +5,6 @@ from werkzeug import generate_password_hash, check_password_hash
 import os,random
 from flasgger.utils import swag_from
 
-
 @app.route('/signUp',methods=['POST'])
 @swag_from('signUp.yml')
 def signUp():
@@ -141,7 +140,7 @@ def getScriptList():
 				single_script = {
 						'Id': script.id,
 						'Filename': script.title,
-						#'Code': script.code, #Can be enbled if the user demands all scripts and content.
+						#'Code': script.script, #Can be enbled if the user demands all scripts and content.
 						'Date': script.pub_date}
 				scripts_dict.append(single_script)
 			return json.dumps({'status':True,'data':scripts_dict,'message':'done'}),200
@@ -164,14 +163,13 @@ def getDocList():
 				single_script = {
 						'Id': script.id,
 						'Filename': script.title,
-						#'Code': script.code, #Can be enbled if the user demands all scripts and content.
+						#'Code': script.script, #Can be enbled if the user demands all scripts and content.
 						'Date': script.pub_date}
 				scripts_dict.append(single_script)
 			return json.dumps({'status':True,'data':scripts_dict,'message':'done'}),200
 		else:
 			return json.dumps({'status':False,'data':[],'message':'Please login first'}),401
 	except Exception as e:
-		print (str(e))
 		return json.dumps({'status':False,'data':[],'message':str(e)}),403
 
 
@@ -183,12 +181,37 @@ def getScriptById():
 		_email = session.get('user')[1]
 		try:
 			script = UserScript.query.filter_by(email=_email,id=_id).first()
-			print('sending :',script.title)
-			return json.dumps({'status':True,'Code':script.code,'Filename':script.title,'Date':script.pub_date,'message':'got script %s'%script.title})
+			return json.dumps({'status':True,'Code':script.script,'Filename':script.title,'Date':script.pub_date,'message':'got script %s'%script.title})
 		except Exception as exc:
+			print (exc)
 			return json.dumps({'status':False,'message':str(exc),'Filename':'','Date':'','Code':''}),403
 	else:
 		return json.dumps({'status':False,'message':'Unauthorized access','Filename':'','Date':'','Code':''}),401
+
+
+@app.route('/getPublicScripts')
+@swag_from('getPublicScripts.yml')
+def getPublicScripts():
+	try:
+		admins = User.query.filter_by(authorized = True)
+		data = {}
+		for admin in admins:
+			scripts = UserScript.query.filter_by(email=admin.email,doc_type='code')
+			scripts_dict = []
+			for script in scripts:
+				single_script = {
+						'Id': script.id,
+						'Filename': script.title,
+						#'Code': script.script, #Can be enbled if the user demands all scripts and content.
+						'Date': script.pub_date}
+				scripts_dict.append(single_script)
+			data[admin.username] = scripts_dict
+		return json.dumps({'status':True,'data':data, 'message':'done'}),200
+	except Exception as e:
+		print (str(e))
+		return json.dumps({'status':False,'data':{},'message':str(e)}),403
+
+
 
 
 

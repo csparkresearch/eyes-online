@@ -7,11 +7,13 @@ class User(db.Model):
 	email = db.Column(db.String(80), unique=True)
 	username = db.Column(db.String(50))
 	pwHash = db.Column(db.String(120))
+	authorized = db.Column(db.Boolean, unique=False, default=False)
 
-	def __init__(self, email, username,pwHash):
+	def __init__(self, email, username,pwHash,authorized=False):
 		self.email = email
 		self.username = username
 		self.pwHash = pwHash
+		self.authorized = authorized
 
 	def __repr__(self):
 		return '<User %r>' % self.username

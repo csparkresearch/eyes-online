@@ -10,24 +10,59 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 services:
     - postgresql
+env:
+  - CXX=g++-4.8
 
 
 python:
   - "2.7"
   - "3.4"
 
+node_js:
+  - "6"
+
+before_install:
+  - pushd frontend
+  - nvm install 6
+  # add node_modules/.bin to the path so that ember command is detected
+  - export PATH=./node_modules/.bin:$PATH
+  - npm install -g npm@5.3.0
+  - npm config set spin false
+  - node -v
+  - npm -v
+  - npm cache verify
+  - npm install -g bower ember-cli
+  - bower --version
+  - popd
 
 install:
   # API server stuff  
   - pip install -r requirements.txt
+
+  # Webapp
+  - pushd frontend
+  - npm run
+  - npm install
+  - bower install
+  - popd
+
 
 before_script:
   - psql -c 'create database eyes_db;' -U postgres
   - export DATABASE_URL=postgres:///eyes_db
 
 script: nosetests
+
+after_success:
+  - pushd frontend
+  - bash surge_deploy.sh
+  - popd
+
+
 
 #after_success:
 #  - pushd frontend
