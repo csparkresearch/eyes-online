@@ -60,11 +60,8 @@ script: nosetests
 after_success:
   - pushd frontend
   - ember build --environment='production'
-  - export REPO_SLUG_ARRAY=(${TRAVIS_REPO_SLUG//\// })
-  - export REPO_NAME=${REPO_SLUG_ARRAY[1]}
   - npm i -g surge
-  - export DEPLOY_DOMAIN=https://${REPO_NAME}.surge.sh
-  - surge --project ./dist --domain $DEPLOY_DOMAIN;
+  - surge --project ./dist --domain eyes-online.surge.sh
   - popd
 
 
