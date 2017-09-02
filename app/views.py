@@ -195,6 +195,7 @@ def getPublicScripts():
 	try:
 		admins = User.query.filter_by(authorized = True)
 		data = {}
+		staticdata = {}
 		for admin in admins:
 			scripts = UserScript.query.filter_by(email=admin.email,doc_type='code')
 			scripts_dict = []
@@ -206,7 +207,15 @@ def getPublicScripts():
 						'Date': script.pub_date}
 				scripts_dict.append(single_script)
 			data[admin.username] = scripts_dict
-		return json.dumps({'status':True,'data':data, 'message':'done'}),200
+
+		for dirname in ['scripts']:
+			scripts_dict = []
+			for a in os.listdir(os.path.join('.','app',dirname)):
+				if a[-3:]=='.py':
+					scripts_dict.append({'Filename':a})
+			staticdata[dirname] = scripts_dict
+
+		return json.dumps({'status':True,'data': data,'staticdata': staticdata, 'message':'done'}),200
 	except Exception as e:
 		print (str(e))
 		return json.dumps({'status':False,'data':{},'message':str(e)}),403
