@@ -1,6 +1,6 @@
 # Online docs and application manager
 
-[API server hosted on Heroku](https://eyes-online.herokuapp.com/) : The dyno is reaped after half an hour of inactivity, and can take up to 10 seconds to wak up and respond to the first request .
+[API server hosted on Heroku](https://eyes-online.herokuapp.com/) : The dyno is reaped after half an hour of inactivity, and can take up to 10 seconds to wake up and respond to the first request .
 [ExpEYES Website](http://expeyes.in)
 
 ### Running this locally
