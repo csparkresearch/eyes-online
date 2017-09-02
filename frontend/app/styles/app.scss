@@ -315,8 +315,7 @@ hr {
   float: right;
 }
 
-.highlight
-h1,
+.highlight h1,
 h2,
 h3,
 h4,
@@ -351,3 +350,7 @@ body.modal-open .blurwrap {
 }
 
 
+.collapse {
+  max-height: 600px;
+  overflow-y: scroll;
+}

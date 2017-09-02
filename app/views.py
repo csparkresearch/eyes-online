@@ -208,12 +208,16 @@ def getPublicScripts():
 				scripts_dict.append(single_script)
 			data[admin.username] = scripts_dict
 
-		for dirname in ['scripts']:
+		os.chdir('app')
+		scriptPath = os.path.join('static','scripts')
+		for root, dirs, files in os.walk(scriptPath):
 			scripts_dict = []
-			for a in os.listdir(os.path.join('.','app','static',dirname)):
+			pth = os.path.join(scriptPath,os.path.basename(root))
+			for a in files:
 				if a[-3:]=='.py':
 					scripts_dict.append({'Filename':a})
-			staticdata[dirname] = scripts_dict
+			staticdata[os.path.basename(root)] = {'data': scripts_dict, 'path': root}
+		os.chdir('..')
 
 		return json.dumps({'status':True,'data': data,'staticdata': staticdata, 'message':'done'}),200
 	except Exception as e:
