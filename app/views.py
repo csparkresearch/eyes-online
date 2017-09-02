@@ -210,7 +210,7 @@ def getPublicScripts():
 
 		for dirname in ['scripts']:
 			scripts_dict = []
-			for a in os.listdir(os.path.join('.','app',dirname)):
+			for a in os.listdir(os.path.join('.','app','static',dirname)):
 				if a[-3:]=='.py':
 					scripts_dict.append({'Filename':a})
 			staticdata[dirname] = scripts_dict
