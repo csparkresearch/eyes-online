@@ -5,6 +5,21 @@ from werkzeug import generate_password_hash, check_password_hash
 import os,random
 from flasgger.utils import swag_from
 
+staticFileData = {}
+os.chdir('app')
+scriptPath = os.path.join('static','scripts')
+for root, dirs, files in os.walk(scriptPath):
+	scripts_dict = []
+	pth = os.path.join(scriptPath,os.path.basename(root))
+	for a in files:
+		if a[-3:]=='.py':
+			scripts_dict.append({'Filename':a})
+	if len(scripts_dict):
+		staticFileData[os.path.basename(root)] = {'data': scripts_dict, 'path': root}
+os.chdir('..')
+
+
+
 @app.route('/signUp',methods=['POST'])
 @swag_from('signUp.yml')
 def signUp():
@@ -195,7 +210,6 @@ def getPublicScripts():
 	try:
 		admins = User.query.filter_by(authorized = True)
 		data = {}
-		staticdata = {}
 		for admin in admins:
 			scripts = UserScript.query.filter_by(email=admin.email,doc_type='code')
 			scripts_dict = []
@@ -206,24 +220,23 @@ def getPublicScripts():
 						#'Code': script.script, #Can be enbled if the user demands all scripts and content.
 						'Date': script.pub_date}
 				scripts_dict.append(single_script)
-			data[admin.username] = scripts_dict
+			if len(scripts_dict):
+				data[admin.username] = scripts_dict
 
-		os.chdir('app')
-		scriptPath = os.path.join('static','scripts')
-		for root, dirs, files in os.walk(scriptPath):
-			scripts_dict = []
-			pth = os.path.join(scriptPath,os.path.basename(root))
-			for a in files:
-				if a[-3:]=='.py':
-					scripts_dict.append({'Filename':a})
-			staticdata[os.path.basename(root)] = {'data': scripts_dict, 'path': root}
-		os.chdir('..')
-
-		return json.dumps({'status':True,'data': data,'staticdata': staticdata, 'message':'done'}),200
+		return json.dumps({'status':True,'data': data, 'message':'done'}),200
 	except Exception as e:
 		print (str(e))
 		return json.dumps({'status':False,'data':{},'message':str(e)}),403
 
+
+@app.route('/getStaticScripts')
+@swag_from('getStaticScripts.yml')
+def getStaticScripts():
+	try:
+		return json.dumps({'status':True,'staticdata': staticFileData, 'message':'done'}),200
+	except Exception as e:
+		print (str(e))
+		return json.dumps({'status':False,'staticdata':{},'message':str(e)}),403
 
 
 

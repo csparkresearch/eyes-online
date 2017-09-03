@@ -14,6 +14,7 @@ router.map(function() {
   this.route('sign-up');
   this.route('add-script');
   this.route('logout');
+  this.route('pycode-browser');
 });
 
 export default router;

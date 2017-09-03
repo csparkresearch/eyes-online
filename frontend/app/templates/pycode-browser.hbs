@@ -1,0 +1,46 @@
+{{home-menu}}
+<div class="container">
+  <h3>PyCode Browser: A massive collection of small Python code snippets for education</h3><hr>
+  <div class="row">
+    <div class="panel-group" id="accordion">
+      {{#each-in model.staticdata as |directoryname scripts|}}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <span class="label label-primary" >{{ directoryname}}</span>
+            <a data-toggle="collapse" href="#{{ directoryname}}" data-parent="#accordion" > : {{ scripts.path }}</a>
+          </div>
+
+          <div id="{{ directoryname}}" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="list-group">
+                {{#each scripts.data as |script|}}          
+                  <li class="list-group-item">
+                    <div class="checkbox">
+                      <label>
+                        {{script.Filename}}
+                      </label>
+                    </div>
+                    <div class="pull-right action-buttons">
+                      <a target="_blank" href="{{apiURL}}/{{ scripts.path }}/{{script.Filename}}" rel="noopener" role="button" class="btn btn-info btn-small">
+                        View
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a {{action "downloadScript" script on="click"}} role="button" class="btn btn-success btn-small">
+                        Download
+                        <span class="glyphicon glyphicon-save"></span>
+                      </a>
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {{else}}
+        Empty database
+      {{/each-in}}
+    </div>
+  </div>
+</div>
+
+{{pycode-banner}}

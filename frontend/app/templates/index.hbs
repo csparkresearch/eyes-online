@@ -37,48 +37,6 @@
       </div>
     </div>
   </div>
-
-  <div class="row">
-    {{#each-in model.staticdata as |directoryname scripts|}}
-      <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <span class="label label-primary" >{{ directoryname}}</span>
-            <a data-toggle="collapse" data-parent="#accordion" href="#{{ directoryname}}"> : {{ scripts.path }}</a>
-          </div>
-
-          <div id="{{ directoryname}}" class="panel-collapse collapse">
-            <div class="panel-body">
-              <ul class="list-group">
-                {{#each scripts.data as |script|}}          
-                  <li class="list-group-item">
-                    <div class="checkbox">
-                      <label>
-                        {{script.Filename}}
-                      </label>
-                    </div>
-                    <div class="pull-right action-buttons">
-                      <a target="_blank" href="{{apiURL}}/{{ scripts.path }}/{{script.Filename}}" rel="noopener" role="button" class="btn btn-info btn-small">
-                        View
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                      </a>
-                      <a {{action "downloadScript" script on="click"}} role="button" class="btn btn-success btn-small">
-                        Download
-                        <span class="glyphicon glyphicon-save"></span>
-                      </a>
-                    </div>
-                  </li>
-                {{/each}}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    {{else}}
-      Empty database
-    {{/each-in}}
-
-  </div>
 </div>
 
 {{expeyes-banner}}
