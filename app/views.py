@@ -226,7 +226,7 @@ def getPublicScripts():
 		return json.dumps({'status':True,'data': data, 'message':'done'}),200
 	except Exception as e:
 		print (str(e))
-		return json.dumps({'status':False,'data':{},'message':str(e)}),403
+		return json.dumps({'status':False,'data':{},'message':str(e)})
 
 
 @app.route('/getStaticScripts')
