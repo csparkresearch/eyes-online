@@ -133,8 +133,8 @@ hr {
 
 .modal-content {
   height: auto;
-  min-height: 100%;
   border-radius: 0;
+  overflow-y: 'auto';
 }
 
 
@@ -354,3 +354,5 @@ body.modal-open .blurwrap {
   max-height: 600px;
   overflow-y: scroll;
 }
+
+@import 'woofmark.scss';

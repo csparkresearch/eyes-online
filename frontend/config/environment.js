@@ -5,7 +5,7 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'eyes-online',
     environment,
-    rootURL: '/',
+    rootURL: '',
     locationType: 'hash',
     EmberENV: {
       FEATURES: {
@@ -22,7 +22,12 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
 	    API_HOST: 'http://127.0.0.1:8000',
-    }
+    },
+    cordova: {
+      rebuildOnChange: false,
+      emulate: false
+     }
+
   };
 
 

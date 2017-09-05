@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { $, $: { post, extend }, Controller, get } = Ember;
+const { $, $: { post, extend }, Controller } = Ember;
 
 export default Controller.extend({
   editTitle        : 'myFile',

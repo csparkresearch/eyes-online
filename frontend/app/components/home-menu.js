@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
-const { $: { post }, Component } = Ember;
+const { $: { post }, Component, inject } = Ember;
 
 export default Component.extend({
 /* ---- Login Screen ---*/
-  routing            : Ember.inject.service('-routing'),
+  routing            : inject.service('-routing'),
   loginFailed        : false,
   loginFailedMessage : 'Failed to Login',
   isProcessing       : false,
@@ -15,7 +15,8 @@ export default Component.extend({
     this.reset();
     if (response.status) {
       this.reset();
-      this.get('routing').transitionTo('user-home');
+      this.sendAction('signin');
+      // get('routing').transitionTo('user-home');
     }    else {
       this.set('loginFailed', true);
       this.loginFailedMessage = String(response.message);

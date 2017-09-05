@@ -19,6 +19,10 @@ module.exports = function(defaults) {
   app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
   app.import('bower_components/bootstrap/dist/css/bootstrap.min.css.map');
 
+  app.import('bower_components/woofmark/dist/woofmark.min.js');
+  app.import('bower_components/domador/dist/domador.min.js');
+  app.import('bower_components/megamark/dist/megamark.min.js');
+
   app.import('bower_components/bootstrap/dist/css/bootstrap-theme.min.css');
   app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', {  destDir: 'fonts'  });
 

@@ -1,46 +1,122 @@
 {{home-menu}}
 <div class="container">
-  <h3>PyCode Browser: A massive collection of small Python code snippets for education</h3><hr>
-  <div class="row">
-    <div class="panel-group" id="accordion">
-      {{#each-in model.staticdata as |directoryname scripts|}}
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <span class="label label-primary" >{{ directoryname}}</span>
-            <a data-toggle="collapse" href="#{{ directoryname}}" data-parent="#accordion" > : {{ scripts.path }}</a>
-          </div>
 
-          <div id="{{ directoryname}}" class="panel-collapse collapse">
-            <div class="panel-body">
-              <ul class="list-group">
-                {{#each scripts.data as |script|}}          
-                  <li class="list-group-item">
-                    <div class="checkbox">
-                      <label>
-                        {{script.Filename}}
-                      </label>
-                    </div>
-                    <div class="pull-right action-buttons">
-                      <a target="_blank" href="{{apiURL}}/{{ scripts.path }}/{{script.Filename}}" rel="noopener" role="button" class="btn btn-info btn-small">
-                        View
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                      </a>
-                      <a {{action "downloadScript" script on="click"}} role="button" class="btn btn-success btn-small">
-                        Download
-                        <span class="glyphicon glyphicon-save"></span>
-                      </a>
-                    </div>
-                  </li>
-                {{/each}}
-              </ul>
+  <div class="panel-group" id="titlebar">
+    <h3>PyCode Browser: Python snippets for education</h3>
+    <a class="btn btn-info" role="button" data-toggle="collapse" data-parent="#titlebar" data-target="#contributors">Contributors' License <span class="caret"></span></a>
+    <a class="btn btn-warning" role="button" data-toggle="collapse" data-parent="#titlebar"  data-target="#about">About Pycode<span class="caret"></span></a>
+
+    <div class="panel">
+      <div id="contributors" class="panel-collapse collapse">
+        <div style="background: #ffffff; overflow:auto;width:auto;padding:.2em .6em;width:100%;overflow-x: scroll;display: inline-block; white-space: nowrap;font-size:9pt;">
+          <pre style="margin: 0; line-height: 125%">
+            <span>#!/usr/bin/python</span>
+            <span>#    This program is free software: you can redistribute it and/or modify</span>
+            <span>#    it under the terms of the GNU General Public License as published by</span>
+            <span>#    the Free Software Foundation, either version 3 of the License, or</span>
+            <span>#    (at your option) any later version.</span>
+            <span>#</span>
+            <span>#    This program is distributed in the hope that it will be useful,</span>
+            <span>#    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+            <span>#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+            <span>#    GNU General Public License for more details.</span>
+            <span>#(c) SPACE 2007 www.space-kerala.org</span>
+            <span>#Original Authors: </span>
+            <span># Vibeesh P &lt;vibeesh@space-kerala.org&gt;, </span>
+            <span># Vimal Joseph &lt;vimal.joseph@zyxware.com&gt; (modified on march 2, 2010 by  to change the script to browse python programmes.)</span>
+            <span># march 9, 2010 added save and some interface changes.</span>
+            <span># April 3, 2010 replaced the gtktextview with gtksourceview for syntax highlighting and line</span>
+            <span># numbering. </span>
+            <span># May 3, 2010 now the modified programmes will execute in /tmp and will be deleted when exiting the application</span>
+            <span># May 8, 2010, the vte terminal added</span>
+            <span># June 14, 2012 Minor corrections in the class name.</span>
+            <span># version 0.93</span>
+            <span># (c) 2015 Georges Khaznadar &lt;georgesk@debian.org&gt;</span>
+            <span># use of &#39;gi.repository&#39;, and of &#39;temptfile&#39;</span>
+          </pre>
+        </div>    
+      </div>
+    </div>
+
+    <div class="panel">
+      <div id="about" class="panel-collapse collapse">
+        <h1 style="color: #5e9ca0;">Objective of this platform:</h1>
+        <p><span style="color: #003300;">Eyes-Online is being developed with the goal of facilitating sharing of code snippets and documentation related to education.<br>This particular section is derived from the <a href="https://github.com/sposh-science/pycode-browser">pycode-browser</a> which is a repository of Python code snippets and it has also been packaged for Debian. <br>As of now, It merely allows easier access to these code snippets, and individual downloads .</span></p>
+        <p><span style="color: #003300;">The code snippets contained in pycode-browser are hosted on github, and the entire repository can be cloned with the following line</span></p>
+        <blockquote>
+          <p><span style="color: #0000ff;"><span style="color: #003300;">git clone&nbsp;<a href="https://github.com/sposh-science/pycode-browser">https://github.com/sposh-science/pycode-browser</a></span></span></p>
+        </blockquote>
+        <p><span style="color: #0000ff;"><span style="color: #003300;">The following features are in the pipeline:</span></span></p>
+        <ul>
+          <li><span style="color: #003300;">Contributing documentation for each of the code examples ( These will be appended to the git repository with contributor details after successful peer review)</span></li>
+          <li><span style="color: #0000ff;"><span style="color: #003300;">Executing the code snippets from within the browser</span></span></li>
+        </ul>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#code">Code Browser</a></li>
+      <li><a data-toggle="tab" href="#help">Documentation</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="code" class="tab-pane fade in active">
+        <div class="panel-group" id="accordion">
+          {{#each-in model.staticdata as |directoryname scripts|}}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <span class="label label-primary" >{{ directoryname}}</span>
+                <a data-toggle="collapse" href="#{{ directoryname}}" data-parent="#accordion" > : {{ scripts.path }}</a>
+              </div>
+
+              <div id="{{ directoryname}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <ul class="list-group">
+                    {{#each scripts.data as |script|}}          
+                      <li class="list-group-item">
+                        <div class="checkbox">
+                          <label>
+                            {{script.Filename}}
+                          </label>
+                        </div>
+                        <div class="pull-right action-buttons">
+                          <a target="_blank" href="{{apiURL}}/{{ scripts.path }}/{{script.Filename}}" rel="noopener" role="button" class="btn btn-info btn-small">
+                            View
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                          </a>
+                          <a target="_blank" href="{{apiURL}}/{{ scripts.path }}/{{script.Filename}}" rel="noopener" role="button" class="btn btn-success btn-small" download target="_blank">
+                            Download
+                            <span class="glyphicon glyphicon-save"></span>
+                          </a>
+                        </div>
+                      </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div>
+          {{else}}
+            Empty database
+          {{/each-in}}
         </div>
-      {{else}}
-        Empty database
-      {{/each-in}}
+      </div>
+
+      <div id="help" class="tab-pane fade in active">
+        {{md-docs}}
+      </div>
     </div>
   </div>
 </div>
+
+
+
+
 
 {{pycode-banner}}

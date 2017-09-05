@@ -1,0 +1,305 @@
+.woofstyle body {
+  background-color: #8e44ad;
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+.woofstyle html,
+.woofstyle body {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.woofstyle , .woofstyle :before, .woofstyle :after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.woofstyle body,
+.woofstyle input,
+.woofstyle button {
+  font-family: Georgia, Helvetica;
+  font-size: 17px;
+  color: #ecf0f1;
+}
+
+.woofstyle h1 {
+  margin-top: 20px;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.woofstyle h1,
+.woofstyle h2,
+.woofstyle h3,
+.woofstyle h4,
+.woofstyle h5,
+.woofstyle h6 {
+  background-color: #b586c8;
+}
+
+.woofstyle h3 {
+  padding: 10px;
+  text-align: center;
+  line-height: 36px;
+}
+
+.woofstyle h3 b {
+  font-size: 27px;
+  color: #2c3e50;
+}
+
+.woofstyle a,
+.woofstyle a:hover {
+  color: #ecf0f1;
+}
+
+.woofstyle img {
+  max-width: 100%;
+}
+
+.woofstyle pre code {
+  color: #fff;
+  font-size: 18px;
+}
+
+.woofstyle blockquote {
+  border-left: 5px solid #fff;
+  margin: 10px 0;
+  padding: 0 15px;
+}
+
+.woofstyle label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.woofstyle sub {
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-size: 11px;
+  font-style: italic;
+}
+
+.woofstyle ul {
+  margin: 0;
+  padding: 0;
+}
+
+.woofstyle input,
+.woofstyle textarea {
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  color: #8e44ad;
+  display: block;
+  width: 100%;
+}
+
+.woofstyle textarea {
+  min-height: 350px;
+  font-size: 14px;
+}
+
+.woofstyle button {
+  background-color: #ecf0f1;
+  color: #8e44ad;
+  border: 0;
+  padding: 18px 12px;
+  cursor: pointer;
+  outline: none;
+  height: 55px;
+}
+
+.woofstyle button:hover {
+  background-color: #8e44ad;
+  color: #ecf0f1;
+}
+
+.woofstyle kbd {
+  display: inline-block;
+  border: 1px solid #ccc;
+  margin: -2px .1em 0;
+  padding: .1em .6em;
+  line-height: 1.4;
+  font-size: 11px;
+  background-color: #f8f8f8;
+  box-shadow: 0 1px 0 #bbb, 0 0 0 2px #fff inset;
+  border-radius: 3px;
+  color: #555;
+  text-shadow: 0 1px 0 #fff;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.woofstyle .parent {
+  background-color: #a469bc;
+  margin: 50px 0;
+  padding: 20px;
+}
+
+.woofstyle .wk-container {
+  background-color: #ecf0f1;
+  color: #a469bc;
+}
+
+.woofstyle .wk-wysiwyg {
+  background-color: #a469bc;
+  color: #fff;
+  outline: none;
+}
+
+.woofstyle .wk-commands,
+.woofstyle .wk-switchboard {
+  display: inline-block;
+}
+
+.woofstyle .wk-switchboard {
+  float: right;
+}
+
+.woofstyle .wk-mode-active {
+  background-color: #19a;
+}
+
+.woofstyle {
+  font-family: Consolas, monaco, monospace;
+}
+
+
+/*---- HIGHLIGHT */
+
+.woofstyle .md-code-block,
+.woofstyle :not(.md-code-block) > .md-code {
+  line-height: 22px;
+  margin: 0;
+}
+
+.woofstyle .md-code-block {
+  padding: 0;
+}
+
+.woofstyle :not(.md-code-block) > .md-code {
+  padding: 0px 6px;
+}
+
+.woofstyle .md-code {
+  display: inline-block;
+  padding: 8px 10px;
+  background-color: #ece0f1;
+  color: #555;
+}
+
+.woofstyle .md-code-block .md-code {
+  display: block;
+}
+
+.woofstyle a:hover
+.woofstyle .md-code {
+  background-color: #1fa3ca;
+  color: #fff;
+}
+
+.woofstyle .md-code-comment,
+.woofstyle .md-code-template_comment {
+  color: #998;
+  font-style: italic;
+}
+
+.woofstyle .md-code-keyword,
+.woofstyle .md-lang-css .md-code-keyword,
+.woofstyle .md-lang-javascript .md-code-title,
+.woofstyle .md-lang-nginx .md-code-title,
+.woofstyle .md-code-subst,
+.woofstyle .md-code-request,
+.woofstyle .md-code-status {
+  color: #333;
+  font-weight: bold;
+}
+
+.woofstyle .md-code-number,
+.woofstyle .md-code-hexcolor,
+.woofstyle .md-lang-ruby .md-code-constant {
+  color: #099;
+}
+
+.woofstyle .md-code-string,
+.woofstyle .md-code-tag .md-code-value {
+  color: #d14;
+}
+
+.woofstyle .md-code-title,
+.woofstyle .md-code-id {
+  color: #900 ;
+  font-weight: bold;
+}
+
+.woofstyle .md-lang-javascript .md-code-title,
+.woofstyle .md-code-subst {
+  font-weight: normal;
+}
+
+.woofstyle .md-code-class .md-code-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.woofstyle .md-code-tag,
+.woofstyle .md-code-tag .md-code-title,
+.woofstyle .md-code-rules .md-code-property {
+  color: #000080;
+  font-weight: normal;
+}
+
+.woofstyle .md-code-attribute,
+.woofstyle .md-code-variable {
+  color: #008080;
+}
+
+.woofstyle .md-code-regexp {
+  color: #009926;
+}
+
+.woofstyle .md-code-symbol,
+.woofstyle .md-lang-ruby .md-code-symbol .md-code-string,
+.woofstyle .md-code-prompt {
+  color: #990073;
+}
+
+.woofstyle .md-code-built_in {
+  color: #0086b3;
+}
+
+.woofstyle .md-code-preprocessor,
+.woofstyle .md-code-pragma,
+.woofstyle .md-code-pi,
+.woofstyle .md-code-doctype,
+.woofstyle .md-code-shebang,
+.woofstyle .md-code-cdata {
+  color: #999;
+  font-weight: bold;
+}
+
+.woofstyle .md-code-deletion {
+  background: #fdd;
+}
+
+.woofstyle .md-code-addition {
+  background: #dfd;
+}
+
+.woofstyle .md-code-chunk {
+  color: #aaa;
+}
+
+.woofstyle .md-mark {
+  background-color: #ffe270;
+  padding: 1px 2px;
+}
+
+.wk-hide {
+    display: none !important;
+}

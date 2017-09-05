@@ -33,3 +33,6 @@ frontend/testem.log
 frontend/.node_modules.ember-try/
 frontend/bower.json.ember-try
 frontend/package.json.ember-try
+
+#Cordova
+frontend/cordova
