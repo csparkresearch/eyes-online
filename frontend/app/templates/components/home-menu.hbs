@@ -1,55 +1,105 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="{{ site.baseurl }}/"><div class="site-avatar"><img src="assets/images/logo.png" alt="avatar"></div></a>
-      <div class="site-info">
-        <h1 class="site-name">ExpEYES Online</h1>
-        <p class="site-description">Browse the latest experiments and documentation</p>
-      </div>
-
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <div class="item">
+      <img class="logo" src="assets/images/logo.png">
+      ExpEYES Online
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Links <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{href-to 'pycode-browser' }}">PyCode Browser</a></li>
-            <li><a href="https://eyes17-help.surge.sh" target="_blank" rel="noopener">ExpEYES-17 Helpfiles</a></li>
-            <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Page 1-3</a></li>
-          </ul>
-        </li>
+    <a class="active item" href="{{href-to 'index' }}">Home</a>
 
-        <li><a href="{{href-to 'sign-up' }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Sign In <span class="caret"></span></a>
-          <div class="dropdown-menu" style="padding: 15px; padding-bottom: 10px;">
-            <form class="form-signin" {{action "logMeIn" on="submit"}} >
-              <label for="inputEmail" class="sr-only">Email address</label>
-              {{input value=loginEmail type="email" id="loginEmail" class="form-control"
-                      placeholder="Email address" required=true autofocus=true}}
-              <label for="inputPassword" class="sr-only">Password</label>
-              {{input value=loginPassword type="password" id="loginPassword" class="form-control"
-                      placeholder="Password" required=true autofocus=true}}
-
-              <button id="btnSignIn" class="btn btn-xs btn-primary btn-block" disabled={{isProcessing}}>
-                Sign in
-              </button>
-            </form>
-            {{#if loginFailed}}
-              <div class="alert alert-danger">{{loginFailedMessage}}</div>
-            {{/if}}
-            {{#if isSlowConnection}}
-              <div class="alert alert-info">The request seems to be taking more time than usual, please wait.</div>
-            {{/if}}
+    <div class="right menu">
+      <a class="ui floated dropdown item simple">
+        Links <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item">
+            <a href="{{href-to 'pycode-browser' }}">PyCode Browser</a>
           </div>
-        </li>
-      </ul>
+          <div class="item">
+            <a href="https://eyes17-help.surge.sh" target="_blank" rel="noopener">ExpEYES-17 Helpfiles</a>
+          </div>
+        </div>
+      </a>
+      <a class="ui floated dropdown item simple">
+        Accounts <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item">
+            <a class = "ui button" href="{{href-to 'sign-up' }}">Sign Up</a>
+          </div>
+          <div class="item">
+            <a class="ui button loginmodal">Sign In</a>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
-</nav>
+</div>
+
+{{!--
+<div class="ui vertical inverted sidebar menu">
+  <a class="active item" href="{{href-to 'index' }}">Home</a>
+  <a class="item" href="{{href-to 'pycode-browser' }}">Pycode Browser</a>
+</div>
+--}}
+
+<div id="pusher" class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment">
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item" href="{{href-to 'index' }}">Home</a>
+        <a class="item" href="{{href-to 'pycode-browser' }}">Pycode Browser</a>
+        <div class="right item">
+          <a class="ui inverted button loginmodal">Sign In</a>
+          <a class="ui inverted button">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        ExpEYES Online
+      </h1>
+      <h2>Explore a collection of code examples</h2>
+      <div class="ui huge primary button">Get Started <i class="down arrow icon"></i></div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="ui modal loginmodal">
+  <i class="close icon"></i>
+  <div class="header">
+    Log In
+  </div>
+  <div class="image content">
+    <div class="ui medium image">
+      <img src="assets/images/logo.png">
+    </div>
+    <div class="ui description">
+      <form class="ui form" {{action "logMeIn" on="submit"}}>
+        <div class="field">
+          <label>Email address</label>
+          {{input value=loginEmail type="email" id="loginEmail" class="form-control" placeholder="Email address" required=true autofocus=true}}
+        </div>
+        <div class="field">
+          <label>Password</label>
+          {{input value=loginPassword type="password" id="loginPassword" class="form-control" placeholder="Password" required=true autofocus=true}}
+        </div>
+        <button class="ui button primary" disabled={{isProcessing}}>Submit</button>
+        {{#if loginFailed}}
+          <div class="alert alert-danger">{{loginFailedMessage}}</div>
+        {{/if}}
+        {{#if isSlowConnection}}
+          <div class="alert alert-info">The request seems to be taking more time than usual, please wait.</div>
+        {{/if}}
+      </form>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui negative deny button">
+      Cancel
+    </div>
+  </div>
+</div>

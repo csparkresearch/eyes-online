@@ -11,7 +11,9 @@
   box-sizing: border-box;
 }
 
-.woofstyle , .woofstyle :before, .woofstyle :after {
+.woofstyle,
+.woofstyle :before,
+.woofstyle :after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
@@ -303,3 +305,57 @@
 .wk-hide {
     display: none !important;
 }
+
+.wk-prompt {
+  position: fixed;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  padding: 5px;
+  background: #fff;
+  border-radius: 5px;
+  max-width: 250px;
+  max-height: 200px;
+  border: 7px solid lightgray;
+
+}
+
+
+.wk-prompt h2 {
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.wk-prompt-close {
+  position: absolute;
+  font-size: 13pt;
+  text-decoration: none;
+  background: #900;
+  width: 15px;
+  height: 15px;
+  right: 5px;
+}
+
+.wk-prompt-close:hover {
+  color: #06d85f;
+}
+
+.wk-prompt-body {
+  max-height: 90%;
+  overflow: auto;
+}
+
+
+.wk-prompt-input {
+  width: 100%;
+}
+
+.wk-prompt-buttons {
+  margin-top:10px;
+  float: right;
+}
+

@@ -4,6 +4,6 @@ import config from '../config/environment';
 const { Controller } = Ember;
 
 export default Controller.extend({
-  apiURL         : config.APP.apiURL,
-  doctitle       : 'documentation'
+  apiURL   : config.APP.apiURL,
+  doctitle : 'documentation'
 });

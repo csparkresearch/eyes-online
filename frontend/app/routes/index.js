@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Route, $: { getJSON } } = Ember;
+const { Route, run, $: { getJSON }, $} = Ember;
 
 export default Route.extend({
   model() {
@@ -14,8 +14,15 @@ export default Route.extend({
         return { 'status': false, 'data': {} };
       }
     },
+    didTransition() {
+      run.next(this, 'initTabs');
+    },
     refresh() {
       this.refresh();
-    }
+    }    
+  },
+  initTabs() {
+    $('.menu .item').tab();
   }
+
 });
