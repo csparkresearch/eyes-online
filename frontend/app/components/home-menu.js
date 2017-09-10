@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { $: { post }, Component, inject } = Ember;
+const { $: { post }, Component, inject, $ } = Ember;
 
 export default Component.extend({
 /* ---- Login Screen ---*/
@@ -16,11 +16,13 @@ export default Component.extend({
     if (response.status) {
       this.reset();
       this.sendAction('signin');
+      $('.loginmodal.modal').modal('hide');
       // get('routing').transitionTo('user-home');
     }    else {
       this.set('loginFailed', true);
       this.loginFailedMessage = String(response.message);
     }
+    
   },
   error() {
     this.reset();
@@ -57,7 +59,33 @@ export default Component.extend({
         .then(this.success.bind(this), this.failure.bind(this), this.error.bind(this));
     }
 
-  }
+  },
+  didInsertElement() {
+    // fix menu when passed
+    $('.masthead')
+      .visibility({
+        once: false,
+        onBottomPassed: function() {
+          $('.fixed.menu').transition('fade in');
+        },
+        onBottomPassedReverse: function() {
+          $('.fixed.menu').transition('fade out');
+        }
+      })
+    ;
 
+    // create sidebar and attach to menu open
+    // $('.ui.sidebar')
+    //   .sidebar('attach events', '.toc.item')
+    // ;
+
+    $('.loginmodal.modal')
+      .modal({
+        blurring: true
+      })
+      .modal('attach events', '.loginmodal.button', 'show')
+    ;
+
+  }
 
 });

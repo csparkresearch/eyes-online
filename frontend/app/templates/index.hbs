@@ -1,42 +1,57 @@
-{{home-menu signin='reroute'}}
-<div class="container">
-  <h3>ExpEYES - Online: Browse the latest experiments and docs</h3><hr>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel-body">
+{{home-menu}}
+<div class="ui raised container segment">
+
+  <h3>ExpEYES - Online: Browse the latest experiments and docs</h3>
+
+  <div id="details">
+
+    <div class="ui top attached tabular menu fluid two item inverted">
+      <a class="ui active item green" data-tab="code">Code Examples</a>
+      <a class="ui item purple" data-tab="help">Documentation</a>
+    </div>
+    <div class="ui bottom attached active tab segment transition fade in green" data-tab="code">
+
+      {{#ui-accordion class="styled fluid accordion"}}
         {{#each-in model.data as |username scripts|}}
-          <h3><span class="label label-primary">Author : {{ username }}</span></h3>
-          <ul class="list-group">
-            {{#each scripts as |script|}}          
-              <li class="list-group-item">
-                <div class="checkbox">
-                  <label>
-                    {{script.Filename}}
-                  </label>
-                </div>
-                <div class="pull-right action-buttons">
-                  <a {{action "viewScript" script on="click"}} role="button" class="btn btn-info btn-small">
-                    View
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                  </a>
-                  <a {{action "downloadScript" script on="click"}} role="button" class="btn btn-success btn-small">
-                    Download
-                    <span class="glyphicon glyphicon-save"></span>
-                  </a>
-                </div>
-              </li>
-            {{/each}}
-          </ul>
+          <div class="ui blue segment title">
+            <i class="dropdown icon"></i>Author : {{ username }}
+          </div>
+          <div class="content">
+            <table class="ui celled striped table">
+              <tbody>
+                {{#each scripts as |script|}}
+                  <tr>
+                    <td class="collapsing">
+                      <i class="file outline icon"></i>{{script.Filename}}
+                    </td>
+                    <td>...</td>
+                    <td class="right aligned collapsing">
+                      <div class="ui buttons mini">
+                        <a class="ui button purple labeled icon" {{action "viewScript" script on="click"}} ><i class="eye icon"></i>View</a>
+                        <div class="or"></div>
+                        <a class="ui button teal right labeled icon" {{action "downloadScript" script on="click"}} ><i class="save icon"></i>Download</a>
+                      </div>
+                    </td>
+                  </tr>
+                {{/each}}
+
+              </tbody>
+            </table>
+
+
+
+          </div>
         {{else}}
           Empty database
         {{/each-in}}
 
-
-
-
-      </div>
+      {{/ui-accordion}}
+    </div>
+    <div class="ui bottom attached tab segment transition fade in purple" data-tab="help">
+      {{md-docs}}
     </div>
   </div>
+
 </div>
 
-{{expeyes-banner}}
+
