@@ -1,0 +1,32 @@
+Get a list of scripts loaded from pycode-browser
+Call this endpoint to get a JSON structure representing the scripts
+---
+tags:
+  - Python Code Storage and Access
+produces:
+  - application/json
+
+responses:
+  200:
+    description: Fetch Successful
+    schema:
+      id: static_scripts
+      properties:
+        message:
+          type: string
+          description:  Fetch result
+          default: "done"
+        status:
+          type: boolean
+          description: true/false depending on query result
+          default: true
+        staticdata:
+          type: dictionary
+          description: Fetch result
+          default: {'dirname1':{"path":"pathname1","data":[{'Id': 2,'Filename': 'Hello.py','Date': 'Sun, 20 Aug 2017 17:14:30 GMT'}]},'dirname2':{"path":"pathname2","data":[{'Id': 3,'Filename': 'Hello2.py','Date': 'Sun, 20 Aug 2017 17:14:30 GMT'}]}}
+  403:
+    description: Error, You're not allowed to do this
+  400:
+    description: Error, Something else went wrong
+
+
