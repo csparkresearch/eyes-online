@@ -20,15 +20,21 @@ export default Controller.extend({
           var xhr = new window.XMLHttpRequest();
           xhr.upload.addEventListener('progress', function(evt) {
             if (evt.lengthComputable) {
+              console.log('length up:',evt.total);
               $('.teal.indicating').progress('set percent', 100 * evt.loaded / evt.total);
               // context.set('progressOne', 100 * evt.loaded / evt.total);
+            } else {
+              console.log('length no computable. u');
             }
           }, false);
 
           xhr.addEventListener('progress', function(evt) {
             if (evt.lengthComputable) {
+              console.log('length down:',evt.total);
               $('.teal.indicating').progress('set percent', 100 * evt.loaded / evt.total);
               // context.set('progressOne', 100 * evt.loaded / evt.total);
+            } else {
+              console.log('length not computable. d');
             }
           }, false);
           return xhr;
