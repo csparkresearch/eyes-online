@@ -1,3 +1,7 @@
+.ui.description.loginform {
+  margin: auto;
+  width: 100% !important;
+}
 
 .hidden.menu {
   display: none;
@@ -5,7 +9,7 @@
 
 .masthead.segment {
   min-height: 400px;
-  padding: 1em 0em;
+  padding: 1em 0;
 }
 
 .masthead .logo.item img {
@@ -13,12 +17,12 @@
 }
 
 .masthead .ui.menu .ui.button {
-  margin-left: 0.5em;
+  margin-left: .5em;
 }
 
 .masthead h1.ui.header {
-  margin-top: 0.8em;
-  margin-bottom: 0em;
+  margin-top: .8em;
+  margin-bottom: 0;
   font-size: 4em;
   font-weight: normal;
 }
@@ -29,7 +33,7 @@
 }
 
 .ui.vertical.stripe {
-  padding: 8em 0em;
+  padding: 8em 0;
 }
 
 .ui.vertical.stripe h3 {
@@ -50,11 +54,11 @@
 }
 
 .ui.vertical.stripe .horizontal.divider {
-  margin: 3em 0em;
+  margin: 3em 0;
 }
 
 .quote.stripe.segment {
-  padding: 0em;
+  padding: 0;
 }
 
 .quote.stripe.segment .grid .column {
@@ -63,7 +67,7 @@
 }
 
 .footer.segment {
-  padding: 5em 0em;
+  padding: 5em 0;
 }
 
 .secondary.pointing.menu .toc.item {
@@ -74,31 +78,30 @@
   .ui.fixed.menu {
     display: none !important;
   }
-  
+
   .secondary.pointing.menu .item,
   .secondary.pointing.menu .menu {
     display: none;
   }
-  
+
   .secondary.pointing.menu .toc.item {
     display: block;
   }
-  
+
   .masthead.segment {
     min-height: 150px;
   }
-  
+
   .masthead h1.ui.header {
     font-size: 2em;
     margin-top: 1.5em;
   }
-  
+
   .masthead h2 {
-    margin-top: 0.5em;
+    margin-top: .5em;
     font-size: 1.5em;
   }
 }
 
 
-
-@import 'woofmark.scss';
+@import 'woofmark';

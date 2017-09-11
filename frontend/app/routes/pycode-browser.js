@@ -1,14 +1,14 @@
 import Ember from 'ember';
 
-const { Route, run, $: { getJSON }, $ } = Ember;
+const { Route, run, $ } = Ember;
 
 export default Route.extend({
-  model() {
-    return getJSON('/getStaticScripts');
-  },
   actions: {
-    didTransition() {
+    didTransition(transition, originRoute) {
       run.next(this, 'initTabs');
+      var controller = this.controllerFor('pycode-browser');
+      controller.send('getStaticScripts');
+
     },
     refresh() {
       this.refresh();

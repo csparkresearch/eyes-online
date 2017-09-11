@@ -10,13 +10,12 @@
       <a class="ui item purple" data-tab="help">Documentation</a>
     </div>
     <div class="ui bottom attached active tab segment transition fade in green" data-tab="code">
-
       {{#ui-accordion class="styled fluid accordion"}}
-        {{#each-in model.staticdata as |directoryname scripts|}}
+        {{#each-in scriptdata as |directoryname scripts|}}
           <div class="ui blue segment title">
             <i class="dropdown icon"></i>{{ directoryname}} : {{ scripts.path }}
           </div>
-          <div class="content">
+          <div class="content" style="max-height:600px;overflow:auto;">
             <table class="ui celled striped table">
               <tbody>
                 {{#each scripts.data as |script|}}
@@ -42,7 +41,9 @@
 
           </div>
         {{else}}
-          Empty database
+          {{#ui-progress percent=1 class="teal indicating tiny"}}
+            <div class="bar"></div>
+          {{/ui-progress}}
         {{/each-in}}
 
       {{/ui-accordion}}

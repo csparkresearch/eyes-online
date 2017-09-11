@@ -80,9 +80,6 @@ export default Component.extend({
     // ;
 
     $('.loginmodal.modal')
-      .modal({
-        blurring: true
-      })
       .modal('attach events', '.loginmodal.button', 'show')
     ;
 
