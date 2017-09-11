@@ -4,9 +4,11 @@ import config from '../config/environment';
 const { Controller, $: { get, post }, $ } = Ember;
 
 export default Controller.extend({
-  apiURL     : config.APP.apiURL,
-  doctitle   : 'documentation',
-  scriptdata : {},
+  apiURL            : config.APP.apiURL,
+  doctitle          : 'documentation',
+  viewScriptName    : 'loading ...',
+  viewScriptContent : '',
+  scriptdata        : {},
   fetchedCodeSuccess(response) {
     if (response.status) {
       $('.teal.indicating').progress('complete');
@@ -14,13 +16,23 @@ export default Controller.extend({
     }
   },
   actions: {
+    viewScript(path, filename) {
+      get(this.apiURL + '/' + path + '/' + filename)
+        .then(response => {
+          this.setProperties({
+            viewScriptName    : filename,
+            viewScriptContent : response// .replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/(?:\s\s)/g, '&nbsp;')
+          });
+          $('.viewmodal.modal').modal('show');
+        });
+    },
     getStaticScripts() {
       get({
         xhr() {
           var xhr = new window.XMLHttpRequest();
           xhr.upload.addEventListener('progress', function(evt) {
             if (evt.lengthComputable) {
-              console.log('length up:',evt.total);
+              console.log('length up:', evt.total);
               $('.teal.indicating').progress('set percent', 100 * evt.loaded / evt.total);
               // context.set('progressOne', 100 * evt.loaded / evt.total);
             } else {
@@ -30,7 +42,7 @@ export default Controller.extend({
 
           xhr.addEventListener('progress', function(evt) {
             if (evt.lengthComputable) {
-              console.log('length down:',evt.total);
+              console.log('length down:', evt.total);
               $('.teal.indicating').progress('set percent', 100 * evt.loaded / evt.total);
               // context.set('progressOne', 100 * evt.loaded / evt.total);
             } else {
@@ -45,20 +57,6 @@ export default Controller.extend({
         dataType : 'json',
         success  : this.fetchedCodeSuccess.bind(this)
       });
-    },
-    openViewModal(script) {
-      $('#viewModal').modal();
-      post('/getScriptByFilename', { 'Filename': script.Filename }, this, 'json')
-        .then(response => {
-          if (response.status) {
-            this.setProperties({
-              viewContents   : response.Code,
-              viewModalTitle : response.Filename
-            });
-          } else {
-            this.set('viewModalTitle', 'Could not retrieve script!');
-          }
-        });
     },
 
     updateScript() {

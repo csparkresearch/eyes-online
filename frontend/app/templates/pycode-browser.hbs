@@ -26,7 +26,7 @@
                     <td>...</td>
                     <td class="right aligned collapsing">
                       <div class="ui buttons mini">
-                        <a class="ui button purple labeled icon" target="_blank" href="{{apiURL}}/{{ scripts.path }}/{{script.Filename}}" rel="noopener" ><i class="eye icon"></i>View</a>
+                        <button class="ui button purple labeled icon" {{action "viewScript" scripts.path script.Filename on="click"}} ><i class="eye icon"></i>View</button>
                         <div class="or"></div>
                         <a class="ui button teal right labeled icon" target="_blank" href="{{apiURL}}/{{ scripts.path }}/{{script.Filename}}" rel="noopener" download target="_blank"><i class="save icon"></i>Download</a>
                       </div>
@@ -57,7 +57,6 @@
     <div class="ui top attached tabular menu">
       <a class="item active" data-tab="contributors">Contributors' License</a>
       <a class="item" data-tab="about">About Pycode</a>
-      <a class="item clearing" data-tab="hide">X</a>
     </div>
 
     <div class="ui bottom attached tab segment transition fade in active" data-tab="contributors">
@@ -103,11 +102,25 @@
       </ul>
       <p>&nbsp;</p>
     </div>
-    <div class="ui bottom attached tab segment transition fade in" data-tab="hide">
-    </div>
   </div>
 
 
 
 </div>
 
+
+
+<div class="ui fullscreen modal viewmodal">
+  <i class="close icon"></i>
+  <div class="header">
+    {{ viewScriptName }}
+  </div>
+  <div class="content">
+    <textarea style="width:100%;height:auto;" rows="20">{{ viewScriptContent }}</textarea>
+  </div>
+  <div class="actions">
+    <div class="ui positive button">
+      Close
+    </div>
+  </div>
+</div>
