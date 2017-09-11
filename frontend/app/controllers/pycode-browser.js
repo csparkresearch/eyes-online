@@ -4,9 +4,9 @@ import config from '../config/environment';
 const { Controller, $: { get, post }, $ } = Ember;
 
 export default Controller.extend({
-  apiURL      : config.APP.apiURL,
-  doctitle    : 'documentation',
-  scriptdata  : {},
+  apiURL     : config.APP.apiURL,
+  doctitle   : 'documentation',
+  scriptdata : {},
   fetchedCodeSuccess(response) {
     if (response.status) {
       $('.teal.indicating').progress('complete');
@@ -20,15 +20,15 @@ export default Controller.extend({
           var xhr = new window.XMLHttpRequest();
           xhr.upload.addEventListener('progress', function(evt) {
             if (evt.lengthComputable) {
-              $('.teal.indicating').progress('update progress', 100 * evt.loaded / evt.total );
+              $('.teal.indicating').progress('set percent', 100 * evt.loaded / evt.total);
               // context.set('progressOne', 100 * evt.loaded / evt.total);
             }
           }, false);
 
           xhr.addEventListener('progress', function(evt) {
             if (evt.lengthComputable) {
-              $('.teal.indicating').progress('update progress', 100 * evt.loaded / evt.total );
-              //context.set('progressOne', 100 * evt.loaded / evt.total);
+              $('.teal.indicating').progress('set percent', 100 * evt.loaded / evt.total);
+              // context.set('progressOne', 100 * evt.loaded / evt.total);
             }
           }, false);
           return xhr;
