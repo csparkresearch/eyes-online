@@ -41,9 +41,16 @@
 
           </div>
         {{else}}
+          <div class="ui dimmable">
+            <div class="ui active dimmer">
+              <div class="ui medium indeterminate text loader">Preparing Files</div>
+            </div>
+            <div style="height:5em;"></div>
+          </div>
           {{#ui-progress percent=1 class="teal indicating tiny"}}
             <div class="bar"></div>
           {{/ui-progress}}
+
         {{/each-in}}
 
       {{/ui-accordion}}
