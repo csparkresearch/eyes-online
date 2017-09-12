@@ -15,13 +15,15 @@ for root, dirs, files in os.walk(scriptPath):
 		if a[-3:]=='.py':
 		  with open(os.path.join(root,a)) as f:
 		    t=f.readline()
+		    if t[0]=='#' : #This is a one line comment, strip the first letter, and terminating newline.
+		      t=t[1:].strip()
+		    else:
+		      t='...'
 		  f.close()		  
-		  scripts_dict.append({'Filename':a,'Intro':t[1:].strip()})
+		  scripts_dict.append({'Filename':a,'Intro':t})
 	if len(scripts_dict):
 		staticFileData[os.path.basename(root)] = {'data': scripts_dict, 'path': root}
 os.chdir('..')
-
-print (staticFileData)
 
 
 @app.route('/signUp',methods=['POST'])
