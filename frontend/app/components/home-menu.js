@@ -18,11 +18,10 @@ export default Component.extend({
       this.sendAction('signin');
       $('.loginmodal.modal').modal('hide');
       // get('routing').transitionTo('user-home');
-    }    else {
+    } else {
       this.set('loginFailed', true);
       this.loginFailedMessage = String(response.message);
     }
-    
   },
   error() {
     this.reset();
@@ -65,10 +64,10 @@ export default Component.extend({
     $('.masthead')
       .visibility({
         once: false,
-        onBottomPassed: function() {
+        onBottomPassed() {
           $('.fixed.menu').transition('fade in');
         },
-        onBottomPassedReverse: function() {
+        onBottomPassedReverse() {
           $('.fixed.menu').transition('fade out');
         }
       })
@@ -78,6 +77,7 @@ export default Component.extend({
     // $('.ui.sidebar')
     //   .sidebar('attach events', '.toc.item')
     // ;
+    // $('.ui.sidebar').sidebar({ context: $('#body') }).sidebar('attach events', '.toc.item');
 
     $('.loginmodal.modal')
       .modal('attach events', '.loginmodal.button', 'show')

@@ -13,11 +13,15 @@ for root, dirs, files in os.walk(scriptPath):
 	pth = os.path.join(scriptPath,os.path.basename(root))
 	for a in files:
 		if a[-3:]=='.py':
-			scripts_dict.append({'Filename':a})
+		  with open(os.path.join(root,a)) as f:
+		    t=f.readline()
+		  f.close()		  
+		  scripts_dict.append({'Filename':a,'Intro':t[1:].strip()})
 	if len(scripts_dict):
 		staticFileData[os.path.basename(root)] = {'data': scripts_dict, 'path': root}
 os.chdir('..')
 
+print (staticFileData)
 
 
 @app.route('/signUp',methods=['POST'])
