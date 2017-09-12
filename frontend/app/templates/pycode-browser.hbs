@@ -1,7 +1,15 @@
 {{home-menu}}
-<div class="ui raised container segment">
+<div class="ui container">
+  <h4 class="ui horizontal divider header"></h4>
+  
+  <h2 class="ui center aligned purple header">
+    PyCode Browser: Python snippets for education
+  </h2>
 
-  <h3>PyCode Browser: Python snippets for education</h3>
+  <h4 class="ui horizontal divider header">
+    <i class="bar chart icon"></i>
+    Read the code
+  </h4>
 
   <div id="details">
     
@@ -9,14 +17,14 @@
       <a class="ui active item green" data-tab="code">Code Browser</a>
       <a class="ui item purple" data-tab="help">Documentation</a>
     </div>
-    <div class="ui bottom attached active tab segment transition fade in green" data-tab="code">
-      {{#ui-accordion class="styled fluid accordion"}}
+    <div class="ui bottom attached active tab transition fade in green" data-tab="code">
+      {{#ui-accordion class="styled fluid"}}
         {{#each-in scriptdata as |directoryname scripts|}}
-          <div class="ui blue segment title">
+          <div class="ui title">
             <i class="dropdown icon"></i>{{ directoryname}} : {{ scripts.path }}
           </div>
-          <div class="content" style="max-height:600px;overflow:auto;">
-            <table class="ui celled striped table">
+          <div class="content minitable" style="max-height:600px;overflow:auto;">
+            <table class="ui very basic selectable table">
               <tbody>
                 {{#each scripts.data as |script|}}
                   <tr>
