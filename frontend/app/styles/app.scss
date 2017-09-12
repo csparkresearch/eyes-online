@@ -70,22 +70,14 @@
   padding: 5em 0;
 }
 
-.secondary.pointing.menu .toc.item {
-  display: none;
-}
 
 @media only screen and (max-width: 700px) {
   .ui.fixed.menu {
     display: none !important;
   }
 
-  .secondary.pointing.menu .item,
-  .secondary.pointing.menu .menu {
-    display: none;
-  }
-
-  .secondary.pointing.menu .toc.item {
-    display: block;
+  .ui.large.secondary.inverted.pointing.menu {
+    overflow: auto;
   }
 
   .masthead.segment {
