@@ -36,3 +36,13 @@ frontend/package.json.ember-try
 
 #Cordova
 frontend/cordova
+
+# Frontend 2
+app/static/pybooksrc/
+frontend2/EyesOnline/.gitattributes
+frontend2/EyesOnline/__tests__/
+frontend2/EyesOnline/android/
+frontend2/EyesOnline/index.ios.js
+frontend2/EyesOnline/ios/
+
+
