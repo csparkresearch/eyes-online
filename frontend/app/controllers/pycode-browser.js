@@ -16,14 +16,16 @@ export default Controller.extend({
     }
   },
   actions: {
-    viewScript(path, filename) {
+    viewScript(path, filename,button) {
+      $('.viewmodal.modal').modal('show');
+      $('.ui.dimmer.viewmodalloading').addClass('active');
       get(this.apiURL + '/' + path + '/' + filename)
         .then(response => {
           this.setProperties({
             viewScriptName    : filename,
             viewScriptContent : response// .replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/(?:\s\s)/g, '&nbsp;')
           });
-          $('.viewmodal.modal').modal('show');
+          $('.ui.dimmer.viewmodalloading').removeClass('active');
         });
     },
     getStaticScripts() {

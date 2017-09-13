@@ -92,6 +92,7 @@ var styles = StyleSheet.create({
   },
   rightContainer: {
     flex: 1,
+    backgroundColor: 'powderblue',
   },
   thumbnail: {
     width: 53,
@@ -100,7 +101,7 @@ var styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginBottom: 8,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   year: {
     textAlign: 'center',
