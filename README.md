@@ -41,7 +41,7 @@ You may also use simple Python scripts, or [Postman](https://chrome.google.com/w
 A [frontend](https://eyes-online.surge.sh/#/pycode-browser) is being developed using EmberJS and semantic-ui
 ![eyes-online-pycode](https://user-images.githubusercontent.com/19327143/30376288-4c673334-98a9-11e7-868f-595fbac58cfc.png)
 
-The frontend has also been packaged from android using cordova.
+The frontend has also been packaged for android using cordova.
 
 ## Pycode-Browser
 
