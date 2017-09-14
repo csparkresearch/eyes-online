@@ -3,8 +3,6 @@
  
 <head>
     <title>ExpEYES Server</title> 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> 
-    <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 </head>
 
 <style>
@@ -14,10 +12,7 @@
   display: flex;
   align-items: center;
 }
-*
-{
-font-family: 'Roboto' , sans-serif;
-}
+
 body
 {
 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);
@@ -47,11 +42,51 @@ font-weight: 700;
 line-height: 98px;
 text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px, rgba(61, 61, 61, 0.3) 3px 3px;
 }
+
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button2 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+.button2:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+
 </style>
 
 <div class="container">
-    <div class="row vertical-center">
-        <div class="col-md-8 col-sm-12">
+    <div class="row vertical-center" style="margin:auto;max-width:800px;">
+        <div >
             <div class="redir-template">
                 <h1>HI!</h1>
                 <h2>This is just a backend for ExpEYES Online</h2>
@@ -59,11 +94,11 @@ text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px, rgba(
                     <p>Designed to store applications and docs for ExpEYES-17</p>
                 </div>
                 <div class="redirect-actions">
-                    <a href="https://eyes-online.surge.sh/#/pycode-browser" style="margin-top: 10px;" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-home"></span>Take Me To The Frontend </a>
-                    <a href="../apidocs/" style="margin-top: 10px;" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-file"></span>API Docs</a>
+                    <a href="https://eyes-online.surge.sh/#/pycode-browser" style="margin-top: 10px;" class="button button1">Take Me To The Frontend </a>
+                    <a href="../apidocs/" style="margin-top: 10px;" class="button button2">API Docs</a>
                 </div>
                 <div class="col-md-4">
-                    <img src="../static/logo.png" alt="logo" width="150px">
+                    <img src="../static/logo.png" alt="logo" style="width:150px;float:left;">
                 </div>
 
             </div>
