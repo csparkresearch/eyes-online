@@ -8,6 +8,7 @@ export default Controller.extend({
   doctitle          : 'documentation',
   viewScriptName    : 'loading ...',
   viewScriptContent : '',
+  activatedFilename : '',
   scriptdata        : {},
   fetchedCodeSuccess(response) {
     if (response.status) {
@@ -16,7 +17,7 @@ export default Controller.extend({
     }
   },
   actions: {
-    viewScript(path, filename,button) {
+    viewScript(path, filename) {
       $('.viewmodal.modal').modal('show');
       $('.ui.dimmer.viewmodalloading').addClass('active');
       get(this.apiURL + '/' + path + '/' + filename)
@@ -27,6 +28,11 @@ export default Controller.extend({
           });
           $('.ui.dimmer.viewmodalloading').removeClass('active');
         });
+    },
+    runScript(path, filename) {
+      $('.ui.menu').find('.item').tab('change tab', 'run')
+      $('.ui.dimmer.runmodalloading').addClass('active');
+      this.set('activatedFilename', filename);
     },
     getStaticScripts() {
       get({
