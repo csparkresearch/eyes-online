@@ -1,5 +1,5 @@
 from pylab import *
 x = range(10)
-plot(x)   
+plot(x, title='my new plot')
 show()
 

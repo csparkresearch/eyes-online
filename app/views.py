@@ -5,6 +5,9 @@ from werkzeug import generate_password_hash, check_password_hash
 import os,random
 from flasgger.utils import swag_from
 
+from app.evaluator import Evaluator
+myEval = Evaluator({})
+
 staticFileData = {}
 os.chdir('app')
 scriptPath = os.path.join('static','scripts')
@@ -244,8 +247,19 @@ def getStaticScripts():
 		print (str(e))
 		return json.dumps({'status':False,'staticdata':{},'message':str(e)}),403
 
-
-
+@app.route('/runScriptByFilename',methods=['POST'])
+def runScriptByFilename():
+	try:
+	  path = request.form['path']
+	  filename = request.form['filename']
+	  print (path,filename)
+	  with open (os.path.join(u'app',path,filename), "r") as myfile:
+	    data=myfile.read()
+	  res = myEval.runCode(data)
+	  return json.dumps({'status':True,'result':res,'Code':data})
+	except Exception as exc:
+	  print(exc)
+	  return json.dumps({'status':False,'result':None,'message':str(exc)})
 
 @app.route('/')
 @app.route('/index')

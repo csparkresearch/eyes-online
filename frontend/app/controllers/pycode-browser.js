@@ -10,12 +10,15 @@ export default Controller.extend({
   viewScriptContent : '',
   activatedFilename : '',
   scriptdata        : {},
+  codeResults       : '',
+
   fetchedCodeSuccess(response) {
     if (response.status) {
       $('.teal.indicating').progress('complete');
       this.set('scriptdata', response.staticdata);
     }
   },
+
   actions: {
     viewScript(path, filename) {
       $('.viewmodal.modal').modal('show');
@@ -30,9 +33,18 @@ export default Controller.extend({
         });
     },
     runScript(path, filename) {
-      $('.ui.menu').find('.item').tab('change tab', 'run')
+      $('.ui.menu').find('.item').tab('change tab', 'run');
       $('.ui.dimmer.runmodalloading').addClass('active');
       this.set('activatedFilename', filename);
+      post('/runScriptByFilename', { 'path': path, 'filename': filename }, this, 'json')
+        .then(response => {
+          this.setProperties({
+            codeResults: response.result
+          });
+          $('.ui.dimmer.runmodalloading').removeClass('active');
+        });
+        
+
     },
     getStaticScripts() {
       get({

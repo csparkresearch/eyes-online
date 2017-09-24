@@ -15,11 +15,10 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "bootstrap-switch": "^3.3.2",
     "woofmark": "^4.2.3",
     "megamark": "^3.3.0",
     "domador": "^2.4.4",
-    "semantic-ui": "^2.2.13"
+    "semantic-ui": "^2.2.13",
+    "jqplot": "*"
   }
 }

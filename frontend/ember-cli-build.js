@@ -25,5 +25,12 @@ module.exports = function(defaults) {
   app.import('bower_components/domador/dist/domador.min.js');
   app.import('bower_components/megamark/dist/megamark.min.js');
 
+  app.import('bower_components/jqplot/jquery.jqplot.min.js');
+  app.import('bower_components/jqplot/plugins/jqplot.cursor.js');
+  app.import('bower_components/jqplot/plugins/jqplot.highlighter.js');
+  app.import('bower_components/jqplot/plugins/jqplot.pointLabels.js');
+
+  app.import('bower_components/jqplot/jquery.jqplot.min.css');
+
   return app.toTree([]);
 };

@@ -30,11 +30,11 @@
                 {{#each scripts.data as |script|}}
                   <tr>
                     <td class="collapsing">
-                      <div class="fluid ui labeled button" tabindex="0" {{action "runScript" scripts.path script.Filename on="click"}}>
-                        <div class="ui basic green button icon">
+                      <div class="fluid ui labeled mini button" tabindex="0" {{action "runScript" scripts.path script.Filename on="click"}}>
+                        <div class="ui basic green mini button icon">
                           <i class="play icon"></i>
                         </div>
-                        <a class="fluid ui basic left pointing blue label" >
+                        <a class="fluid ui basic left pointing blue mini label" >
                           {{script.Filename}}
                         </a>
                       </div>
@@ -53,9 +53,6 @@
 
               </tbody>
             </table>
-
-
-
           </div>
         {{else}}
           <div class="ui dimmable">
@@ -76,6 +73,28 @@
       {{md-docs}}
     </div>
     <div class="ui bottom attached tab segment transition fade in teal"  style="min-height:400px;" data-tab="run">
+      {{#each codeResults as |element|}}
+        {{#if (eq element.type 'input')}}
+          <label id="{{element.labelname}}" class="{{element.class}}">{{element.label}}</label>
+          {{input id=element.name}}
+        {{/if}}
+        {{#if (eq element.type 'label')}}
+          <label id="{{element.name}}" class="{{element.class}}">{{element.value}}</label>
+        {{/if}}
+        {{#if (eq element.type 'button')}}
+          <button id="{{element.name}}" class="btn btn-small btn-primary" {{action 'runButtonAction' element.action}}>{{element.label}}</button>
+        {{/if}}
+        {{#if (eq element.type 'text')}}
+          {{element.value}}<br>
+        {{/if}}
+        {{#if (eq element.type 'span')}}
+          <div class="{{element.class}}"><span id="{{element.name}}">{{element.value}}</span></div>
+        {{/if}}
+        {{#if (eq element.type 'plot')}}
+          {{graph-jqplot data=element}}
+        {{/if}}
+
+      {{/each}}
       <div class="ui dimmer runmodalloading">
         <div class="ui large text loader">Compiling Server Side Code for 
           <div class="ui left pointing teal basic label">
